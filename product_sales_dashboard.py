@@ -55,3 +55,24 @@ for i, v in enumerate(num_cust_by_sales_method.values):
     ax.text(i, v + 0.5, str(v), ha='center')
 
 st.pyplot(ax)
+
+## Revenue Over Time By Sales Method
+ax = revenue_over_time.unstack().plot()
+plt.title('Revenue Over Time by Sales Method')
+plt.xlabel('Week')
+plt.ylabel('Revenue ($)')
+
+st.pyplot(ax)
+
+## Business Metrics
+## Average Revenue per Customer by Sales Method Over Time
+ax = pivot.plot(kind='line', marker='.')
+
+plt.xlabel('Week')
+plt.ylabel('Average Revenue per Customer')
+plt.title('Average Revenue per Customer by Sales Method over Time')
+plt.legend(title='Sales Method')
+plt.grid()
+plt.ylim(0, 250)
+
+st.pyplot(ax)
