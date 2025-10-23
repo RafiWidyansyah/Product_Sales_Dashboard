@@ -30,5 +30,28 @@ st.set_page_config(page_title="Pens & Printers New Product Sales Dashboard",
 min_week = data['week'].min()
 max_week = data['week'].max()
 
+## Sidebar Filter
 
+with st.sidebar:
+    st.sidebar.header("Filter:")
+    start_week, end_week = st.date_input(
+        label="Week Filter", min_value=min_week,
+        max_value=max_week,
+        value=[min_week, max_week]
+    )
 
+## Main Page
+st.title("New Product Sales Dashboard")
+
+## Number of Customers per Sales Method
+ax = sns.barplot(x=num_cust_by_sales_method.index, y=num_cust_by_sales_method.values)
+
+plt.title('Number of Customers by Sales Methods')
+plt.xlabel('Sales Method')
+plt.ylabel('Number of Customers')
+
+## Add value label for each bar plot
+for i, v in enumerate(num_cust_by_sales_method.values):
+    ax.text(i, v + 0.5, str(v), ha='center')
+
+st.pyplot(ax)
