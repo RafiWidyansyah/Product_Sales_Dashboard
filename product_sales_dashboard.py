@@ -32,13 +32,13 @@ max_week = data['week'].max()
 
 ## Sidebar Filter
 
-with st.sidebar:
-    st.sidebar.header("Filter:")
-    start_week, end_week = st.date_input(
-        label="Week Filter", min_value=min_week,
-        max_value=max_week,
-        value=[min_week, max_week]
-    )
+#with st.sidebar:
+#    st.sidebar.header("Filter:")
+#    start_week, end_week = st.date_input(
+#        label="Week Filter", min_value=min_week,
+#        max_value=max_week,
+#       value=[min_week, max_week]
+#   )
 
 ## Main Page
 st.title("New Product Sales Dashboard")
