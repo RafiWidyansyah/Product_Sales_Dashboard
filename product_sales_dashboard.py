@@ -27,7 +27,7 @@ st.set_page_config(page_title="Pens & Printers New Product Sales Dashboard",
                    layout="wide")
 
 ## Week Selector
-week = data['week'].unique()
+week = data['week'].unique().sort_value()
 with st.container(border=True):
     users = st.multiselect("Week", week, default=week)
 
