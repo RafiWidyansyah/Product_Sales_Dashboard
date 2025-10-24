@@ -63,7 +63,7 @@ st.pyplot(fig)
 st.subheader("Revenue Over Time By Sales Method")
 
 fig, ax = plt.subplots(figsize=(12, 8))
-ax = revenue_over_time.unstack().plot()
+revenue_over_time.unstack().plot(kind='line', ax=ax)
 
 plt.title('Revenue Over Time by Sales Method')
 plt.xlabel('Week')
@@ -76,7 +76,7 @@ st.pyplot(fig)
 st.subheader("Average Revenue per Customers by Sales Method Over Time")
 
 fig, ax = plt.subplots(figsize=(16, 8))
-ax = pivot.plot(kind='line', marker='.')
+pivot.plot(kind='line', marker='.', ax=ax)
 
 plt.xlabel('Week')
 plt.ylabel('Average Revenue per Customer')
