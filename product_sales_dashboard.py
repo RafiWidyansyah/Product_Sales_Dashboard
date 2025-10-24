@@ -44,6 +44,9 @@ max_week = data['week'].max()
 st.title("New Product Sales Dashboard")
 
 ## Number of Customers per Sales Method
+st.sub_header("Number of Customers per Sales Method")
+
+fig, ax = plt.subplots(figsize=(12, 8))
 ax = sns.barplot(x=num_cust_by_sales_method.index, y=num_cust_by_sales_method.values)
 
 plt.title('Number of Customers by Sales Methods')
@@ -54,18 +57,25 @@ plt.ylabel('Number of Customers')
 for i, v in enumerate(num_cust_by_sales_method.values):
     ax.text(i, v + 0.5, str(v), ha='center')
 
-st.pyplot(ax)
+st.pyplot(fig)
 
 ## Revenue Over Time By Sales Method
+st.sub_header("Revenue Over Time By Sales Method")
+
+fig, ax = plt.subplots(figsize=(12, 8))
 ax = revenue_over_time.unstack().plot()
+
 plt.title('Revenue Over Time by Sales Method')
 plt.xlabel('Week')
 plt.ylabel('Revenue ($)')
 
-st.pyplot(ax)
+st.pyplot(fig)
 
 ## Business Metrics
 ## Average Revenue per Customer by Sales Method Over Time
+st.sub_header("Average Revenue per Customers by Sales Method Over Time")
+
+fig, ax = plt.subplots(figsize=(16, 8))
 ax = pivot.plot(kind='line', marker='.')
 
 plt.xlabel('Week')
@@ -75,4 +85,4 @@ plt.legend(title='Sales Method')
 plt.grid()
 plt.ylim(0, 250)
 
-st.pyplot(ax)
+st.pyplot(fig)
