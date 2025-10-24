@@ -26,19 +26,10 @@ st.set_page_config(page_title="Pens & Printers New Product Sales Dashboard",
                    page_icon="bar_chart:",
                    layout="wide")
 
-## Time Filter Component
-min_week = data['week'].min()
-max_week = data['week'].max()
-
-## Sidebar Filter
-
-#with st.sidebar:
-#    st.sidebar.header("Filter:")
-#    start_week, end_week = st.date_input(
-#        label="Week Filter", min_value=min_week,
-#        max_value=max_week,
-#       value=[min_week, max_week]
-#   )
+## Week Selector
+week = data['week']
+with st.container(border=True):
+    users = st.multiselect("Week", week, default=week)
 
 ## Main Page
 st.title("New Product Sales Dashboard")
