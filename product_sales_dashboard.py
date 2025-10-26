@@ -8,10 +8,12 @@ import streamlit as st
 data = pd.read_csv('product_sales_clean.csv')
 
 # Create Filter By "Week"
+min_week = data['week'].min()
+max_week = data['week'].max()
 min_value, max_value = st.slider("Select Week :",
-                                 min_value=int(data['week'].min()),
-                                 max_value=int(data['week'].max()),
-                                 value=(int(data['week'].min(), int(data['week'].max())))
+                                 min_value=min_week,
+                                 max_value=max_week,
+                                 value=[min_week, max_week]
                                 )
 
 
