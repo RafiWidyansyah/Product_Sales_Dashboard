@@ -11,7 +11,8 @@ data = pd.read_csv('product_sales_clean.csv')
 min_value, max_value = st.slider("Select Week :",
                                  min_value=int(data['week'].min()),
                                  max_value=int(data['week'].max()),
-                                 value=(min_value, max_value))
+                                 value=(int(data['week'].min(), int(data['week'].max())))
+                                )
 
 
 main_data = data[(data['week'] >= min_value) & (data['week'] <= max_value)]
