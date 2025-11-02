@@ -23,13 +23,13 @@ with st.sidebar:
 with st.sidebar:
      region = data['state'].unique()
      st.sidebar.header("State:")
-     state = st.multiselect(label="Choose State", option=region, default=region)
+     state = st.multiselect(label="Choose State", options=region, default=region)
 
 # Sales Method Filter
 with st.sidebar:
      sales = data['sales_method'].unique()
      st.sidebar.header("Sales Method:")
-     method = st.multiselect(label="Choose Sales Method", option=sales, default=sales)
+     method = st.multiselect(label="Choose Sales Method", options=sales, default=sales)
 
 # Link Both Filter to Main Data
 data = data[(data["state"].isin(state)) & (data["sales_method"].isin(method))]
