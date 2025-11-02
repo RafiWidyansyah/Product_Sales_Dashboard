@@ -20,14 +20,14 @@ with st.sidebar:
      data = data[(data['week'] >= min_value) & (data['week'] <= max_value)]
 
 # Location (State) Filter
-location = data['state'].unique()
 with st.sidebar:
+     region = data['state'].unique()
      st.sidebar.header("State:")
-     state = st.multiselect(label="Choose State", option=location, default=location)
+     state = st.multiselect(label="Choose State", option=region, default=region)
 
 # Sales Method Filter
-sales = data['sales_method'].unique()
 with st.sidebar:
+     sales = data['sales_method'].unique()
      st.sidebar.header("Sales Method:")
      method = st.multiselect(label="Choose Sales Method", option=sales, default=sales)
 
