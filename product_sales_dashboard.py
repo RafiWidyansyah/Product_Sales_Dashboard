@@ -8,26 +8,41 @@ import streamlit as st
 data = pd.read_csv('product_sales_clean.csv')
 
 # Create Filter By "Week"
-min_week = data['week'].min()
-max_week = data['week'].max()
-min_value, max_value = st.slider("Select Week :",
+with st.sidebar:
+     st.sidebar.header("Week:")
+     min_week = data['week'].min()
+     max_week = data['week'].max()
+     min_value, max_value = st.slider("Select Week :",
                                  min_value=min_week,
                                  max_value=max_week,
                                  value=[min_week, max_week]
                                 )
+     data = data[(data['week'] >= min_value) & (data['week'] <= max_value)]
 
+# Location (State) Filter
+location = data['state'].unique()
+with st.sidebar:
+     st.sidebar.header("State:")
+     state = st.multiselect(label="Choose State", option=location, default=location)
 
-main_data = data[(data['week'] >= min_value) & (data['week'] <= max_value)]
+# Sales Method Filter
+sales = data['sales_method'].unique()
+with st.sidebar:
+     st.sidebar.header("Sales Method:")
+     method = st.multiselect(label="Choose Sales Method", option=sales, default=sales)
+
+# Link Both Filter to Main Data
+data = data[(data["state"].isin(state)) & (data["sales_method"].isin(method))]
 
 # Number of Customers per Methods
-num_cust_by_sales_method = main_data['sales_method'].value_counts()
+num_cust_by_sales_method = data['sales_method'].value_counts()
 
 # Revenue Over Time By Sales Method
-revenue_over_time = main_data.groupby(['week', 'sales_method'])['revenue'].sum()
+revenue_over_time = data.groupby(['week', 'sales_method'])['revenue'].sum()
 
 # Business Metrics
 # Average Revenue per Customer by Sales Method Over Time
-avg_revenue_cust_time = main_data.groupby(['week', 'sales_method']).agg({'revenue':'sum', 
+avg_revenue_cust_time = data.groupby(['week', 'sales_method']).agg({'revenue':'sum', 
                                                                                 'customer_id' :'count'}).reset_index()
 avg_revenue_cust_time['avg_revenue_by_customer'] = avg_revenue_cust_time['revenue']/avg_revenue_cust_time['customer_id']
 pivot = avg_revenue_cust_time.pivot_table(index='week', columns='sales_method', values='avg_revenue_by_customer')
@@ -60,7 +75,7 @@ st.pyplot(fig)
 ## Revenue Over Time By Sales Method
 st.subheader("Revenue Over Time By Sales Method")
 
-fig, ax = plt.subplots(figsize=(12, 8))
+fig, ax = plt.subplots(figsize=(10, 8))
 revenue_over_time.unstack().plot(kind='line', ax=ax)
 
 plt.title('Revenue Over Time by Sales Method')
