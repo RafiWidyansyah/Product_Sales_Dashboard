@@ -34,6 +34,23 @@ with st.sidebar:
 # Link Both Filter to Main Data
 data = data[(data["state"].isin(state)) & (data["sales_method"].isin(method))]
 
+## ---- Dashboard Page --- ##
+
+## KPI Metrics
+col1, col2, col3 = st.columns(3)
+
+### Total Sales Revenue
+total_revenue = data['revenue'].sum().round(2)
+col1.metric(label="Total Sales Revenue", value=total_revenue)
+
+### Total Products Sales
+total_prod = data['nb_sold'].sum()
+col2.metric(label="Total Product Sold", value=total_prod)
+
+### Total Customers
+total_cust = data['customer_id'].count()
+col3.metric(label="Total Customer", value=total_cust)
+
 # Number of Customers per Methods
 num_cust_by_sales_method = data['sales_method'].value_counts()
 
@@ -47,7 +64,7 @@ avg_revenue_cust_time = data.groupby(['week', 'sales_method']).agg({'revenue':'s
 avg_revenue_cust_time['avg_revenue_by_customer'] = avg_revenue_cust_time['revenue']/avg_revenue_cust_time['customer_id']
 pivot = avg_revenue_cust_time.pivot_table(index='week', columns='sales_method', values='avg_revenue_by_customer')
 
-# Dashboard
+# Dashboard Plot
 
 st.set_page_config(page_title="Pens & Printers New Product Sales Dashboard",
                    page_icon="bar_chart:",
