@@ -69,11 +69,10 @@ pivot = avg_revenue_cust_time.pivot_table(index='week', columns='sales_method', 
 st.set_page_config(page_title="Pens & Printers New Product Sales Dashboard",
                    page_icon="bar_chart:",
                    layout="wide")
-
-col1, col2 = st.columns(2)
-
 ## Main Page
 st.title("New Product Sales Dashboard")
+
+col1, col2 = st.columns(2)
 
 ## Number of Customers per Sales Method
 with col1:
