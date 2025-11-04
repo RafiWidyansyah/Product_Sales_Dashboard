@@ -101,18 +101,35 @@ with col2:
 
      st.pyplot(fig)
 
+## Columns For Row 2 Dashboard
+col1, col2 = st.columns(2)
+
 ## Business Metrics
 ## Average Revenue per Customer by Sales Method Over Time
-st.subheader("Average Revenue per Customers by Sales Method Over Time")
+with col1:
+     st.subheader("Average Revenue per Customers by Sales Method Over Time")
+     fig, ax = plt.subplots()
+     pivot.plot(kind='line', marker='.', ax=ax)
+     plt.xlabel('Week')
+     plt.ylabel('Average Revenue per Customer')
+     plt.title('Average Revenue per Customer by Sales Method over Time')
+     plt.legend(title='Sales Method')
+     plt.grid()
+     plt.ylim(0, 250)
 
-fig, ax = plt.subplots(figsize=(16, 8))
-pivot.plot(kind='line', marker='.', ax=ax)
+     st.pyplot(fig)
 
-plt.xlabel('Week')
-plt.ylabel('Average Revenue per Customer')
-plt.title('Average Revenue per Customer by Sales Method over Time')
-plt.legend(title='Sales Method')
-plt.grid()
-plt.ylim(0, 250)
+## Top 10 Sales Revenue Region
+region_revenue = data.groupby('state']['revenue'].sum().reset_index().sort_values('state', ascending=False)
+top_10_region_revenue = region_revenue.head(10)
+with col2:
+     st.subheader("Top 10 Sales Revenue Region")
+     fig, ax = plt.subplots()
+     ax = sns.barplot(x=top_10_region_revenue['state'],
+                      y=top_10_region_revenue['revenue'])
+     plt.title("Top 10 Region Sales Revenue")
+     plt.xlabel("State")
+     plt.ylabel("Revenue (in $)")
+     plt.grid()
 
-st.pyplot(fig)
+     st.pyplot(fig)
