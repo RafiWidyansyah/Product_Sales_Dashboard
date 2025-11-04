@@ -77,7 +77,7 @@ col1, col2 = st.columns(2)
 ## Number of Customers per Sales Method
 with col1:
      st.subheader("Number of Customers per Sales Method")
-     fig, ax = plt.subplots(figsize=(12, 8))
+     fig, ax = plt.subplots()
      ax = sns.barplot(x=num_cust_by_sales_method.index, y=num_cust_by_sales_method.values)
      plt.title('Number of Customers by Sales Methods')
      plt.xlabel('Sales Method')
