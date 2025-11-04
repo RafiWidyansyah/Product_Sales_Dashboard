@@ -88,7 +88,7 @@ with col1:
      for i, v in enumerate(num_cust_by_sales_method.values):
           ax.text(i, v + 0.5, str(v), ha='center')
 
-     st.pyplot(fig)
+st.pyplot(fig)
 
 ## Revenue Over Time By Sales Method
 st.subheader("Revenue Over Time By Sales Method")
@@ -101,7 +101,7 @@ with col2:
      plt.xlabel('Week')
      plt.ylabel('Revenue ($)')
 
-     st.pyplot(fig)
+st.pyplot(fig)
 
 ## Business Metrics
 ## Average Revenue per Customer by Sales Method Over Time
