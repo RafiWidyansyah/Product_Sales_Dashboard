@@ -70,36 +70,38 @@ st.set_page_config(page_title="Pens & Printers New Product Sales Dashboard",
                    page_icon="bar_chart:",
                    layout="wide")
 
+col1, col2 = st.columns(2)
+
 ## Main Page
 st.title("New Product Sales Dashboard")
 
 ## Number of Customers per Sales Method
-st.subheader("Number of Customers per Sales Method")
-
-fig, ax = plt.subplots(figsize=(12, 8))
-ax = sns.barplot(x=num_cust_by_sales_method.index, y=num_cust_by_sales_method.values)
-
-plt.title('Number of Customers by Sales Methods')
-plt.xlabel('Sales Method')
-plt.ylabel('Number of Customers')
+with col1:
+     st.subheader("Number of Customers per Sales Method")
+     fig, ax = plt.subplots(figsize=(12, 8))
+     ax = sns.barplot(x=num_cust_by_sales_method.index, y=num_cust_by_sales_method.values)
+     plt.title('Number of Customers by Sales Methods')
+     plt.xlabel('Sales Method')
+     plt.ylabel('Number of Customers')
 
 ## Add value label for each bar plot
-for i, v in enumerate(num_cust_by_sales_method.values):
-    ax.text(i, v + 0.5, str(v), ha='center')
+     for i, v in enumerate(num_cust_by_sales_method.values):
+          ax.text(i, v + 0.5, str(v), ha='center')
 
-st.pyplot(fig)
+     st.pyplot(fig)
 
 ## Revenue Over Time By Sales Method
 st.subheader("Revenue Over Time By Sales Method")
 
-fig, ax = plt.subplots(figsize=(10, 8))
-revenue_over_time.unstack().plot(kind='line', ax=ax)
+with col2:
+     fig, ax = plt.subplots()
+     revenue_over_time.unstack().plot(kind='line', ax=ax)
 
-plt.title('Revenue Over Time by Sales Method')
-plt.xlabel('Week')
-plt.ylabel('Revenue ($)')
+     plt.title('Revenue Over Time by Sales Method')
+     plt.xlabel('Week')
+     plt.ylabel('Revenue ($)')
 
-st.pyplot(fig)
+     st.pyplot(fig)
 
 ## Business Metrics
 ## Average Revenue per Customer by Sales Method Over Time
