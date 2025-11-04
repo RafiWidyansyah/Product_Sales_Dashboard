@@ -90,9 +90,8 @@ with col1:
      st.pyplot(fig)
 
 ## Revenue Over Time By Sales Method
-st.subheader("Revenue Over Time By Sales Method")
-
 with col2:
+     st.subheader("Revenue Over Time By Sales Method")
      fig, ax = plt.subplots()
      revenue_over_time.unstack().plot(kind='line', ax=ax)
 
