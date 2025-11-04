@@ -129,6 +129,7 @@ with col2:
                       y=top_10_region_revenue['revenue'])
      plt.title("Top 10 Region Sales Revenue")
      plt.xlabel("State")
+     plt.xticks(rotate=90)
      plt.ylabel("Revenue (in $)")
      plt.grid()
 
