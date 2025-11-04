@@ -120,7 +120,7 @@ with col1:
      st.pyplot(fig)
 
 ## Top 10 Sales Revenue Region
-region_revenue = data.groupby('state')['revenue'].sum().reset_index().sort_values('state', ascending=False)
+region_revenue = data.groupby('state')['revenue'].sum().reset_index().sort_values('revenue', ascending=False)
 top_10_region_revenue = region_revenue.head(10)
 with col2:
      st.subheader("Top 10 Sales Revenue Region")
