@@ -82,6 +82,7 @@ with col1:
      plt.title('Number of Customers by Sales Methods')
      plt.xlabel('Sales Method')
      plt.ylabel('Number of Customers')
+     plt.grid()
 
 ## Add value label for each bar plot
      for i, v in enumerate(num_cust_by_sales_method.values):
@@ -98,6 +99,7 @@ with col2:
      plt.title('Revenue Over Time by Sales Method')
      plt.xlabel('Week')
      plt.ylabel('Revenue ($)')
+     plt.grid()
 
      st.pyplot(fig)
 
